@@ -52,7 +52,7 @@ function MainPage({setLogged}) {
     }
   };
   const handleToolboxAction = (action) => {
-    
+    getCurUser(curUser);
 
     if (action === 'delete') {
       axios.delete('https://blocking.somee.com/api/table/delete', {
@@ -88,7 +88,7 @@ fetchUserTableData()
         }).catch((error) => console.log(error));
     }
     
-    getCurUser(curUser);
+    
   };
 
   return (
