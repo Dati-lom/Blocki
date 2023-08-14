@@ -60,6 +60,7 @@ function MainPage({setLogged}) {
   headers: { "Authorization": `Bearer ${token}` }
 }).then((response)=>
 {if(chosenUsers.includes(curUser)){
+  setLogged(false)
   navigate("/login");
 }
     }).catch((error) => {
@@ -71,6 +72,7 @@ function MainPage({setLogged}) {
         blocked: true,
       },{headers:{"Authorization":`Bearer ${token}`}}).then((response) => {
         if(chosenUsers.includes(curUser)){
+          setLogged(false)
           navigate("/login");
         }
         ;
