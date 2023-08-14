@@ -58,9 +58,10 @@ function MainPage({setLogged}) {
       axios.delete('https://blocking.somee.com/api/table/delete', {
   data: chosenUsers,
   headers: { "Authorization": `Bearer ${token}` }
-}).then((response)=>{
-  fetchUserTableData()
-
+}).then((response)=>
+{if(chosenUsers.includes(curUser)){
+  navigate("/login");
+}
     }).catch((error) => {
     console.log(error);
   });
@@ -69,15 +70,19 @@ function MainPage({setLogged}) {
         ids: chosenUsers,
         blocked: true,
       },{headers:{"Authorization":`Bearer ${token}`}}).then((response) => {
-        fetchUserTableData();
+        if(chosenUsers.includes(curUser)){
+          navigate("/login");
+        }
+        ;
       })
     } else if (action === 'unblock') {
       axios.put('https://blocking.somee.com/api/table/update', {
         ids: chosenUsers,
         blocked: false,
       },{headers:{"Authorization":`Bearer ${token}`}}).then((response) => {
-        fetchUserTableData()}).catch((error) => console.log(error));
+        }).catch((error) => console.log(error));
     }
+    fetchUserTableData()
     getCurUser(curUser);
   };
 

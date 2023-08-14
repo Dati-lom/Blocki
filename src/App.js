@@ -20,7 +20,7 @@ function App() {
       <TokenContext.Provider value={{token,setToken,curUser,setCurUser}}>
       <Header isLoggedIn={isLogged} setLoggedIn={setLogged}></Header>
               <Routes>
-        <Route path="/" element = {<Register></Register>}/>
+        <Route path="/" element = {<Login setLogged={setLogged}></Login>}/>
         <Route path='/login' element={<Login setLogged={setLogged}></Login>}/>
         <Route path="/MainPage" element = {<MainPage setLogged = {setLogged} isLogged = {isLogged}></MainPage>}/>
         <Route path='/register' element={<Register></Register>}/>
