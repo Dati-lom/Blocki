@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Register from './Pages/Register';
+import Login from './Pages/Login';
+import Header from './Pages/Header';
+import {Routes, Route } from 'react-router-dom';
+import MainPage from './Pages/MainPage';
+import { useState } from 'react';
+import TokenContext from './Context/TokenContext';
 
 function App() {
+  const[token,setToken] = useState("")
+  const[curUser,setCurUser] = useState(null)
+  const [isLogged,setLogged] = useState(false);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <TokenContext.Provider value={{token,setToken,curUser,setCurUser}}>
+      <Header isLoggedIn={isLogged} setLoggedIn={setLogged}></Header>
+              <Routes>
+        <Route path="/" element = {<Register></Register>}/>
+        <Route path='/login' element={<Login setLogged={setLogged}></Login>}/>
+        <Route path="/MainPage" element = {<MainPage setLogged = {setLogged} isLogged = {isLogged}></MainPage>}/>
+        <Route path='/register' element={<Register></Register>}/>
+      </Routes>
+      </TokenContext.Provider>
+      
+     
     </div>
   );
 }
