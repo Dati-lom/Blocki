@@ -121,7 +121,18 @@ function MainPage({setLogged}) {
 
                 <th>Register Date</th>
                 <th>Blocked</th>
-                <th>Select</th>
+                <th><label f></label>
+                <input
+                    type="checkbox"
+                    checked={chosenUsers.length === users.length}
+                    onChange={() => {
+                      if (chosenUsers.length === users.length) {
+                        setChosenUsers([]);
+                      } else {
+                        setChosenUsers(users.map((user) => user.id));
+                      }
+                    }}
+                  /></th>
               </tr>
             </thead>
             <tbody>
