@@ -52,9 +52,8 @@ function MainPage({setLogged}) {
     }
   };
   const handleToolboxAction = (action) => {
-    getCurUser(curUser);
-
     
+
     if (action === 'delete') {
       axios.delete('https://blocking.somee.com/api/table/delete', {
   data: chosenUsers,
@@ -79,6 +78,7 @@ function MainPage({setLogged}) {
       },{headers:{"Authorization":`Bearer ${token}`}}).then((response) => {
         fetchUserTableData()}).catch((error) => console.log(error));
     }
+    getCurUser(curUser);
   };
 
   return (
