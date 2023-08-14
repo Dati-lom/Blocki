@@ -63,6 +63,7 @@ function MainPage({setLogged}) {
   setLogged(false)
   navigate("/login");
 }
+fetchUserTableData()
     }).catch((error) => {
     console.log(error);
   });
@@ -75,6 +76,7 @@ function MainPage({setLogged}) {
           setLogged(false)
           navigate("/login");
         }
+        fetchUserTableData()
         ;
       })
     } else if (action === 'unblock') {
@@ -82,9 +84,10 @@ function MainPage({setLogged}) {
         ids: chosenUsers,
         blocked: false,
       },{headers:{"Authorization":`Bearer ${token}`}}).then((response) => {
+        fetchUserTableData()
         }).catch((error) => console.log(error));
     }
-    fetchUserTableData()
+    
     getCurUser(curUser);
   };
 
